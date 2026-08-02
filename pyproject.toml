@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lego-db"
+version = "2.0.0"
+description = "Local LEGO set catalog and owned-set tracker using the Rebrickable catalog dataset"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT License" }
+
+keywords = ["lego", "catalog", "collections", "inventory"]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+# Standard library only -- no third-party runtime dependencies.
+dependencies = []
+
+[project.scripts]
+lego-db = "lego_db.presentation.gui.app:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+lego_db = ["data/**/*.csv", "i18n/locales/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
